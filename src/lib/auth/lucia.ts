@@ -23,7 +23,8 @@ export const auth = lucia({
 export const dcAuth = azureAD(auth, {
   clientId: process.env.AZURE_CLIENT_ID!,
   clientSecret: process.env.AZURE_CLIENT_SECRET!,
-  tenant: process.env.AZURE_TENANT_ID!,
+  // tenant: process.env.AZURE_TENANT_ID!,
+  tenant: "organizations",
   redirectUri: process.env.AZURE_REDIRECT_URI!,
   scope: ["email", "openid", "profile", "offline_access"]
 });
