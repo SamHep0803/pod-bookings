@@ -16,6 +16,8 @@ model User {
   email String @unique
   name  String
 
+  bookings Booking[]
+
   auth_session Session[]
   key          Key[]
 }
@@ -35,6 +37,17 @@ model Key {
   hashed_password String?
   user_id         String
   user            User    @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+  @@index([user_id])
+}
+
+model Booking {
+  id      String   @id @unique
+  user    User     @relation(fields: [user_id], references: [id])
+  user_id String
+  date    DateTime
+  period  Int
+  pod     Int
 
   @@index([user_id])
 }
